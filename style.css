@@ -1,0 +1,46 @@
+* {
+  background-color: #614936;
+  border-style: dashed;
+}
+
+p {
+  font-family: 'Boogaloo', cursive;
+  font-size: 30px;
+  text-align: center;
+  color: #ece1cb;
+}
+
+h1 {
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 55px;
+  text-align: center;
+  color: #ece1cb;
+}
+
+.threeImages {
+  margin-right: 50%;
+  border: 5px solid #ece1cb;
+  display: inline-block;
+}
+
+li {
+  color: #ece1cb;
+  display: inline-block;
+  font-family: sans-serif;
+  padding: 0;
+  text-align: center;
+}
+
+ul {
+  display: inline-block;
+  /*margin-left: 50%;*/
+  text-align: center;
+}
+
+nav {
+  text-align: center;
+}
+
+button {
+  color: #ece1cb;
+}
