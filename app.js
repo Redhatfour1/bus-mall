@@ -8,18 +8,19 @@ var productPictures  = [];
 // var currentlyDisplayed = [];
 // var attachNewImage;
 // var newImage;
-// var listenerCount = 0;
+var clickChart = [];
+var ctx = document.getElementById('myChart').getContext('2d');
 // var imageEl = document.getElementById('pic-box');
 
 function Items (name, filepath, totalDisplayed, totalClicked) {
   this.name = name;
-  this.filepath = 'assets/' + this.name + '.jpg';
+  this.filepath = './assets/' + name + '.jpg';
   this.totalDisplayed = 0; //this is number of votes
   this.totalClicked = 0;//this is number of clicks
   productPictures.push(this);
 }
 
-(function createPictureAlbum() {
+(function() {
   for (var i = 0; i < productPictureNames.length; i++) {
     new Items (productPictureNames[i]);
   }
@@ -58,6 +59,7 @@ var tracker = {
   imgObjThree: null,
   picturesAlbumEl: document.getElementById('picturesAlbum'),
   viewResultsEl:document.getElementById('viewResults'),
+  resultsListEl: document.getElementById('resultsList'),
   clicks: 1,
 
   randomImage: function() {
@@ -65,11 +67,12 @@ var tracker = {
   },
 
   displayThree: function() {
-    this.imgObjOne = productPictures[tracker.randomImage()];
-    this.imgObjTwo = productPictures[tracker.randomImage()];
-    this.imgObjThree = productPictures[tracker.randomImage()];
+    this.imgObjOne = productPictures[this.randomImage()];
+    this.imgObjTwo = productPictures[this.randomImage()];
+    this.imgObjThree = productPictures[this.randomImage()];
 
     if (this.imgObjOne === this.imgObjTwo || this.imgObjOne === this.imgObjThree || this.imgObjTwo === this.imgObjThree) {
+      this.displayThree();
     }
 
     this.imgOneEl.src = this.imgObjOne.filepath;
@@ -93,15 +96,16 @@ clickHandler: function(event) {
   tracker.checkClicks();
   if (event.target.id === tracker.imgObjOne.name || event.target.id === tracker.imgObjTwo.name || event.target.id === imgObjThree.name) {
   tracker.clicks++;
-  tracker.tallyTotal(event.target.id);
+  tracker.addTotal(event.target.id);
   tracker.displayThree();
   }
+  dataInfo();
 },
 
-tallyTotal: function(elId)  {
+addTotal: function(elId)  {
   for (var i in productPictures) {
     if (elId === productPictures[i].name) {
-      productPictures[i].totalClicked += 1;
+      productPictures[i].totalDisplayed += 1;
       console.log(productPictures[i]);
       break;
     }
@@ -112,12 +116,86 @@ renderResults: function()  {
   var ulEl =document.createElement('ul');
   for (var i in productPictures) {
     var liEl = document.createElement('li');
-    liEl.textContent = productPictures[i].name + ': ' + productPictures[i].totalClicked + 'votes';
+    liEl.textContent = productPictures[i].name + ': ' + productPictures[i].totalDisplayed;
     ulEl.appendChild(liEl);
   }
-  this.viewResultsEl.appendChild(ulEl);
+  this.resultsListEl.appendChild(ulEl);
+  drawChart();
   },
+
 };
+tracker.renderResults();
+
+function dataInfo() {
+  console.log('dataInfo');
+  for (var i = 0; i < productPictures.length; i++) {
+    clickChart[i]= productPictures[i].totalDisplayed;
+  }
+  console.log('clickChart: ', clickChart);
+}
 
 tracker.picturesAlbumEl.addEventListener('click', tracker.clickHandler);
 tracker.displayThree();
+
+
+
+function drawChart() {
+  console.log('drawChart');
+  console.log('clickChart: ', clickChart);
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
+      datasets: [{
+        label: '# of Click',
+        data: clickChart,
+
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)'
+        ],
+        borderWidth: 1
+      }]
+    }
+  });
+}

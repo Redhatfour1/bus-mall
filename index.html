@@ -10,11 +10,11 @@
     <section>
     </section>
     <nav>
-      <ul>
-        <li>Home</li>
-        <li>Products</li>
-        <li>About</li>
-        <li>Contact</li>
+      <ul class="navBar">
+        <li class="nav">Home</li>
+        <li class="nav">Products</li>
+        <li class="nav">About</li>
+        <li class="nav">Contact</li>
       </ul>
     </nav>
   </header>
@@ -23,8 +23,7 @@
       <h1>Bus Mall</h1>
     </section>
     <section>
-      <aside id="resultsList">
-      </aside>
+      <aside id="resultsList"></aside>
     </section>
     <img src="" id="imageBoxes">
     <section class="threeImages" id="picturesAlbum">
@@ -32,11 +31,15 @@
       <img class="box" id="img2"/>
       <img class="box" id="img3"/>
     </section>
-    <section>
-      <button class="viewResults" id="viewResults" type="button">View Results</button>
+    <section class="button">
+      <button class="results" id="viewResults" type="button">View Results</button>
       <p>Thanks for testing my Bus Mall project. It has been a learning experience for both the user and the developer.</p>
     </section>
+    <section>
+      <canvas id="myChart" class="chart" width="400" height="400"></canvas>
+    </section
   </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js" charset="utf-8"></script>
   <script src="app.js" charset="utf-8"></script>
 </body>
 </html>

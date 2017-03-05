@@ -1,38 +1,39 @@
-* {
-  background-color: #614936;
-  border-style: dashed;
+main {
+  background-color: #ece1cb;
+  /*border-style: dashed;*/
 }
 
 p {
   font-family: 'Boogaloo', cursive;
   font-size: 30px;
   text-align: center;
-  color: #ece1cb;
+  color: #614936;
 }
 
 h1 {
   font-family: 'Fredericka the Great', cursive;
   font-size: 55px;
   text-align: center;
-  color: #ece1cb;
+  color: #614936;
 }
 
 .threeImages {
-  margin-right: 50%;
-  border: 5px solid #ece1cb;
+  border: 5px solid #614936;
   display: inline-block;
+  align-items: center;
+  margin-left: 25%;
 }
 
-li {
-  color: #ece1cb;
+.nav {
+  color: #614936;
   display: inline-block;
   font-family: sans-serif;
   padding: 0;
   text-align: center;
 }
 
-ul {
-  display: inline-block;
+.navBar {
+  display: block;
   /*margin-left: 50%;*/
   text-align: center;
 }
@@ -41,6 +42,29 @@ nav {
   text-align: center;
 }
 
-button {
-  color: #ece1cb;
+li {
+  display: inline-block;
+}
+.button {
+  color: #614936;
+  display: block;
+  text-align: center;
+}
+
+.results {
+  border-top: 50px;
+  border-bottom: 50px;
+  border-left: 10px;
+  border-right: 10px;
+}
+
+.chart {
+  background-color: #614936;
+  border-color: #decca8;
+  border-style: solid;
+}
+
+label {
+  font-family: sans-serif;
+  font-size: 20px;
 }
