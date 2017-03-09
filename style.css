@@ -11,6 +11,8 @@ p {
 }
 
 h1 {
+  /*border-width: 5px;
+  border: dashed blue;*/
   font-family: 'Fredericka the Great', cursive;
   font-size: 55px;
   text-align: center;
@@ -58,10 +60,10 @@ li {
   border-right: 10px;
 }
 
-.chart {
+/*.chart {
   background-color: #614936;
   border-color: #decca8;
-  border-style: solid;
+  border-style: solid;*/
 }
 
 label {

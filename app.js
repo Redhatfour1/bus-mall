@@ -86,9 +86,16 @@ var tracker = {
 checkClicks: function() {
   if (this.clicks > 14) {
     this.picturesAlbumEl.removeEventListener('click', this.clickHandler);
-    this.viewResultsEl.addEventListener('click', function(event) {
+    tracker.viewResultsEl.hidden = false;
+    this.viewResultsEl.addEventListener('click', function(event) {//this is my button
       event.preventDefault();
+
       tracker.renderResults();
+      console.log('checkClicks');
+  //   collectData();
+  //   tracker.viewResults();
+  //   storeData();
+
     });
   }
 },
@@ -98,8 +105,16 @@ clickHandler: function(event) {
   tracker.clicks++;
   tracker.addTotal(event.target.id);
   tracker.displayThree();
+
   }
   dataInfo();
+  function storeData() {
+  var stringProduct = JSON.stringify(productArray);
+  localStorage.setItem('stringifyProductPictures', JSON.stringify(productPictures));
+  var jsonProductPictures = JSON.stringify(ProductPictures);
+  console.log(storeData);
+};
+
 },
 
 addTotal: function(elId)  {
@@ -124,7 +139,7 @@ renderResults: function()  {
   },
 
 };
-tracker.renderResults();
+
 
 function dataInfo() {
   console.log('dataInfo');
@@ -136,6 +151,9 @@ function dataInfo() {
 
 tracker.picturesAlbumEl.addEventListener('click', tracker.clickHandler);
 tracker.displayThree();
+
+localStorage.getItem('stringifyProductPictures');
+var newProductPictures = JSON.parse(productPictures);
 
 
 
